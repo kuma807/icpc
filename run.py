@@ -11,6 +11,7 @@ start = time.time()
 max_process = 16#要変更
 proc_list = []
 cnt = 0
+subprocess.run(f"rm out/*", shell=True)
 with open("input.txt") as f:
     l = f.readlines()
     index = 0
@@ -23,10 +24,10 @@ with open("input.txt") as f:
         cnt += 1
         index += N + 1
         proc_list.append(proc)
-        if len(proc_list) % max_process == 0 or N == 0:
-            for subproc in proc_list:
-                subproc.wait()
-                proc_list = []
+
+for subproc in proc_list:
+    subproc.wait()
+
 print("time: ", time.time() - start)
 print("テストケース数(1-index):", cnt)
 ans = ""
