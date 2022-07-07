@@ -16,13 +16,12 @@ with open("input.txt") as f:
     l = f.readlines()
     index = 0
     while index < len(l):
-        N = int(l[index])
-        S = "".join(l[index:index + N + 1])
-        S += "0"
+        N = l[index]
+        S = str(N) + "\n0"
         #自分のコードを実行するためのコマンド
         proc = subprocess.Popen(f"echo '{S}' | ./atcoder > out/{cnt}.txt", shell=True)#要変更
         cnt += 1
-        index += N + 1
+        index += 1
         proc_list.append(proc)
 
 for subproc in proc_list:
